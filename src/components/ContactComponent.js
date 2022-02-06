@@ -45,7 +45,6 @@ class Contact extends Component {
   }
 
   render() {
-    
     return (
       <div className="container">
         <div className="row">
@@ -98,7 +97,7 @@ class Contact extends Component {
                   First Name
                 </Label>
                 <Col md={10}>
-                  <Control.text
+                  <Control.Text
                     model=".firstName"
                     className="form-control"
                     validators={{
@@ -128,7 +127,7 @@ class Contact extends Component {
                   Last Name
                 </Label>
                 <Col md={10}>
-                  <Control.text
+                  <Control.Text
                     model=".lastName"
                     className="form-control"
                     validators={{
@@ -158,7 +157,7 @@ class Contact extends Component {
                   Phone
                 </Label>
                 <Col md={10}>
-                  <Control.text
+                  <Control.Text
                     model=".phoneNum"
                     className="form-control"
                     validators={{
@@ -190,7 +189,7 @@ class Contact extends Component {
                   Email
                 </Label>
                 <Col md={10}>
-                  <Control.text
+                  <Control.Text
                     model=".email"
                     className="form-control"
                     validators={{
@@ -217,7 +216,7 @@ class Contact extends Component {
                 <Col md={{ size: 4, offset: 2 }}>
                   <div className="form-check">
                     <Label check>
-                      <Control.checkbox
+                      <Control.Checkbox
                         model=".agree"
                         name="agree"
                         className="form-check-input"
@@ -227,14 +226,14 @@ class Contact extends Component {
                   </div>
                 </Col>
                 <Col md={4}>
-                  <Control.select
+                  <Control.Select
                     model=".contactType"
                     name="contactType"
                     className="form-control"
                   >
                     <option>By Phone</option>
                     <option>By Email</option>
-                  </Control.select>
+                  </Control.Select>
                 </Col>
               </Row>
               <Row className="form-group">
@@ -242,7 +241,7 @@ class Contact extends Component {
                   Your Feedback
                 </Label>
                 <Col md={10}>
-                  <Control.textarea
+                  <Control.Textarea
                     model=".feedback"
                     className="form-control"
                     id="feedback"

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Card,
   CardImg,
@@ -25,7 +25,7 @@ function RenderDirectoryItem({ campsite }) {
 function Directory(props) {
   const directory = props.campsites.map((campsite) => {
     return (
-      <div key={campsite.id} className="col-md-5 m1">
+      <div key={campsite.id} className="col-md-5 m-1">
         <RenderDirectoryItem campsite={campsite} />
       </div>
     );
