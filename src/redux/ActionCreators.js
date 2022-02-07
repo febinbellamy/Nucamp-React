@@ -112,16 +112,15 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
         throw error;
       }
     )
-    .then(response => response.json())
-    .then(response => dispatch(addComment(response)))
-    .catch(error => {
+    .then((response) => response.json())
+    .then((response) => dispatch(addComment(response)))
+    .catch((error) => {
       console.log("post comment", error.message);
       alert("Your comment could not be posted");
     });
 };
 
-
-export const fetchPromotions = () => dispatch => {
+export const fetchPromotions = () => (dispatch) => {
   dispatch(promotionsLoading());
 
   return fetch(baseURL + "promotions")
