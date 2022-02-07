@@ -10,7 +10,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect, ReactReduxContext } from "react-redux";
 import { actions } from "react-redux-form";
 import {
-  addComment,
+  postComment,
   fetchCampsites,
   fetchComments,
   fetchPromotions,
@@ -26,8 +26,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  addComment: (campsiteId, rating, author, text) =>
-    addComment(campsiteId, rating, author, text),
+  postComment: (campsiteId, rating, author, text) =>
+    postComment(campsiteId, rating, author, text),
   fetchCampsites: () => fetchCampsites(),
   resetFeedbackForm: () => actions.reset("feedbackForm"),
   fetchComments: () => fetchComments(),
@@ -53,7 +53,9 @@ class Main extends Component {
           campsitesLoading={this.props.campsites.isLoading}
           campsitesErrMess={this.props.campsites.errMess}
           promotion={
-            this.props.promotions.promotions.filter((promotion) => promotion.featured)[0]
+            this.props.promotions.promotions.filter(
+              (promotion) => promotion.featured
+            )[0]
           }
           promotionLoading={this.props.promotions.isLoading}
           promotionErrMess={this.props.promotions.errMess}
@@ -75,8 +77,8 @@ class Main extends Component {
           comments={this.props.comments.comments.filter(
             (comment) => comment.campsiteId === +match.params.campsiteId
           )}
-          commentsErrMess = {this.props.comments.errMess}
-          addComment={this.props.addComment}
+          commentsErrMess={this.props.comments.errMess}
+          postComment={this.props.postComment}
         />
       );
     };
