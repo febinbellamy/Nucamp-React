@@ -14,8 +14,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
-import { Loading } from './LoadingComponent';
-
+import { Loading } from "./LoadingComponent";
+import { baseURL } from '../shared/baseURL';
 
 const minLength = (len) => (val) => val && val.length >= len;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -24,7 +24,7 @@ function RenderCampsite({ campsite, addComment, campsiteId }) {
   return (
     <div className="col-md-5 m-1">
       <Card>
-        <CardImg top src={campsite.image} alt={campsite.name} />
+        <CardImg top src={baseURL + campsite.image} alt={campsite.name} />
         <CardBody>
           <CardText>{campsite.description}</CardText>
         </CardBody>
@@ -125,7 +125,6 @@ class CommentForm extends Component {
 }
 
 function RenderComments({ comments, addComment, campsiteId }) {
-  
   if (comments) {
     return (
       <div className="col-md-5 ml-1">
@@ -161,7 +160,7 @@ function CampsiteInfoComponent(props) {
       </div>
     );
   }
-  if (props.errMess){
+  if (props.errMess) {
     return (
       <div className="container">
         <div className="row">
@@ -172,7 +171,7 @@ function CampsiteInfoComponent(props) {
       </div>
     );
   }
-  
+
   if (props.campsite) {
     return (
       <div className="container">
