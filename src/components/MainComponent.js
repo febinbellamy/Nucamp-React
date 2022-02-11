@@ -7,7 +7,7 @@ import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { connect, ReactReduxContext } from "react-redux";
+import { connect } from "react-redux";
 import { actions } from "react-redux-form";
 import {
   postComment,
