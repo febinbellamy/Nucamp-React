@@ -6,9 +6,12 @@ import {
   Label,
   Col,
   Row,
+  Modal,
+  ModalHeader,
+  ModalBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Control, LocalForm, Errors } from "react-redux-form";
+import { Control, Form, Errors } from "react-redux-form";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -22,6 +25,7 @@ class Contact extends Component {
     super(props);
 
     this.state = {
+      isFeedbackModalOpen: false,
       firstName: "",
       lastName: "",
       phoneNum: "",
@@ -42,12 +46,31 @@ class Contact extends Component {
 
   handleSubmit(values) {
     console.log("Current state is: " + JSON.stringify(values));
-    alert("Current state is: " + JSON.stringify(values));
+    this.props.postFeedback(values);
+    this.props.resetFeedbackForm();
+    this.setState({
+      isFeedbackModalOpen: true,
+    });
   }
+
+  toggleFeedbackModal = () => {
+    this.setState({
+      isFeedbackModalOpen: !this.state.isFeedbackModalOpen,
+    });
+  };
 
   render() {
     return (
       <div className="container">
+        <Modal
+          isOpen={this.state.isFeedbackModalOpen}
+          toggle={this.toggleFeedbackModal}
+        >
+          <ModalHeader toggle={this.toggleFeedbackModal}>
+            Thank you for your feedback!
+          </ModalHeader>
+          <ModalBody>Please fill out this survey.</ModalBody>
+        </Modal>
         <div className="row">
           <div className="col">
             <Breadcrumb>
@@ -92,8 +115,12 @@ class Contact extends Component {
             <h2>Send us your Feedback</h2>
             <hr />
           </div>
+
           <div className="col-md-10">
-            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+            <Form
+              model="feedbackForm"
+              onSubmit={(values) => this.handleSubmit(values)}
+            >
               <Row className="form-group">
                 <Label htmlFor="firstName" md={2}>
                   First Name
@@ -259,7 +286,7 @@ class Contact extends Component {
                   </Button>
                 </Col>
               </Row>
-            </LocalForm>
+            </Form>
           </div>
         </div>
       </div>
